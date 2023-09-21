@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "house-mgmt",
+    "name": "ЖКХ Мастер",
     "slug": "house-mgmt",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,18 +22,26 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tnserg.housemgmt"
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "output": "static"
     },
     "plugins": [
       "expo-router"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "80053abe-758b-45db-a787-6527b295e8db"
+      }
     }
   }
 }
