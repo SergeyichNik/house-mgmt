@@ -37,8 +37,14 @@ export const api = {
   getService: (service: Services): Promise<ResData<Service[]>> => {
     return instance.get<Service[]>(`/services/${service}`);
   },
-  getServices: (): Promise<ResData<Service[]>> => {
-    return instance.get<Service[]>("/services/types");
+  getServicesCount: (): Promise<ResData<Record<Services, number>>> => {
+    return instance.get<Service[]>("/services").then((res) => {
+      const data = {};
+      Object.entries(res.data).forEach(([key, array]) => {
+        data[key] = array.length;
+      });
+      return data;
+    });
   },
   getServiceRequestsList: (): Promise<ResData<ServiceRequest[]>> => {
     return instance.get<ServiceRequest[]>("/services/requests/list");

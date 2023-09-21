@@ -11,6 +11,8 @@ interface ServiceSchema extends DefaultSchema<DomainService[]> {
   id: number;
   name: string;
   amount: string;
+  servicesCount: Record<Services, number>;
+  fetchServicesCount: () => void;
   clearStore: (field: keyof ServiceSchema, value: any) => void;
   fetchService: (service: Services) => void;
   setCancelSelected: () => void;
@@ -21,6 +23,18 @@ export const useService = create<ServiceSchema>((set) => {
   return {
     data: [],
     isFetching: false,
+    servicesCount: {},
+    fetchServicesCount: async () => {
+      try {
+        set({ isFetching: true });
+        const res = await api.getServicesCount();
+        set({ servicesCount: res });
+      } catch {
+        set({ error: "Server error" });
+      } finally {
+        set({ isFetching: false });
+      }
+    },
     setCancelSelected: () => {
       set((state) => {
         return {

@@ -18,6 +18,7 @@ export interface LabelButtonProps extends LabelButtonColors, LabelButtonMargin {
   iconImage: ReactElement;
   href: ServicePaths;
   name: string;
+  count: number;
 }
 
 export const LabelButton = ({
@@ -25,6 +26,7 @@ export const LabelButton = ({
   name,
   href,
   color,
+  count,
 }: LabelButtonProps) => {
   const router = useRouter();
   const onNavigate = () => {
@@ -46,9 +48,11 @@ export const LabelButton = ({
           <Text dark regular md>
             {name}
           </Text>
-          <Text gray regular>
-            10 услуг
-          </Text>
+          {count && (
+            <Text gray regular>
+              {count} услуг
+            </Text>
+          )}
         </Footer>
       </Container>
     </Styled>
